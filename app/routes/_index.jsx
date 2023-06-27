@@ -4,6 +4,7 @@ import { db } from '../firebase';
 
 import { NoData } from '../components/CustomPage';
 import ComponentTable from '../components/ComponentTable';
+import DialogEdit from '../components/DialogEdit';
 
 export const meta = () => {
   return [
@@ -17,6 +18,9 @@ const dbName = 'data';
 export default function Index () {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  function closeModal () { setIsOpen(false); }
+  function openModal () { setIsOpen(true); }
 
   const getDataAll = async () => {
     const q = query(collection(db, dbName), orderBy('component_name', 'asc'));
@@ -46,10 +50,16 @@ export default function Index () {
   return (
     !data || data.length < 1
       ? <NoData/>
-      : <ComponentTable
-        data = {data}
-        updateData = {updateData}
-        deleteData = {deleteData}
-      />
+      : <>
+        <ComponentTable
+          data = {data}
+          updateData = {openModal}
+          deleteData = {deleteData}
+        />
+        <DialogEdit
+          isOpen = {isOpen}
+          closeModal = {closeModal}
+        />
+      </>
   );
 }
