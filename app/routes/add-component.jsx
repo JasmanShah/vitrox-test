@@ -27,13 +27,19 @@ export default function AddComponent () {
 
   return (
     <>
-      <ComponentForm
-        title= 'Add Component'
-        inputValue = {inputValue}
-        handleChange = {handleChange}
-        postData = {() => postData(inputValue)}
-        disabled = {disabled}
-      />
+      <div className="grid grid-cols-6 mt-6">
+        <div className="col-start-2 col-span-4 border border-gray-200 shadow-sm rounded-lg">
+          <ComponentForm
+            title= 'Add Component'
+            inputValue = {inputValue}
+            handleChange = {handleChange}
+            postData = {() => postData(inputValue)}
+            disabled = {disabled}
+          />
+        </div>
+
+      </div>
+
     </>
   );
 }
