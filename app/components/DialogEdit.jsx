@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { Transition, Dialog } from '@headlessui/react';
-import AddComponent from '../routes/add-component';
+import ComponentForm from './ComponentForm';
 export default function DialogEdit (props) {
   const { isOpen, closeModal } = props;
   return (
@@ -37,7 +37,12 @@ export default function DialogEdit (props) {
                     Update Component
                 </Dialog.Title>
                 <div className="mt-2">
-                  <AddComponent/>
+                  {/* <ComponentForm
+                    inputValue = {inputValue}
+                    handleChange = {handleChange}
+                    postData = {postData}
+                    disabled = {disabled}
+                  /> */}
                 </div>
 
                 <div className="mt-4">

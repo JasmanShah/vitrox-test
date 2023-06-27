@@ -1,6 +1,7 @@
 import { ButtonDelete, ButtonEdit } from './CustomButton';
+import { deleteData } from '../constants/api';
 export default function ComponentTable (props) {
-  const { data, updateData, deleteData } = props;
+  const { data, openModal, dbName } = props;
   return (
     <div>
       <div className="mx-auto max-w-lg text-center">
@@ -35,10 +36,10 @@ export default function ComponentTable (props) {
               <td>
                 <span className="inline-flex overflow-hidden rounded-md border bg-white shadow-sm">
                   <ButtonEdit
-                    onPress={() => updateData(value.id)}
+                    onPress={() => openModal(value.id)}
                   />
                   <ButtonDelete
-                    onPress={() => deleteData(value.id)}
+                    onPress={() => deleteData(dbName, value.id)}
                   />
                 </span>
 

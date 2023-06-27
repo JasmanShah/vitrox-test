@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebase';
+import { postData } from '../constants/api';
 import ComponentForm from '../components/ComponentForm';
 
 export default function AddComponent () {
@@ -14,9 +15,9 @@ export default function AddComponent () {
     }
   );
 
-  const postData = async () => {
-    await addDoc(collection(db, 'data'), inputValue);
-  };
+  // const postData = async () => {
+  //   await addDoc(collection(db, 'data'), inputValue);
+  // };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,17 +29,13 @@ export default function AddComponent () {
 
   return (
     <>
-      <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-lg text-center">
-          <h1 className="text-2xl font-bold sm:text-3xl">Add Component</h1>
-        </div>
-        <ComponentForm
-          inputValue = {inputValue}
-          handleChange = {handleChange}
-          postData = {postData}
-          disabled = {disabled}
-        />
-      </div>
+      <ComponentForm
+        title= 'Add Component'
+        inputValue = {inputValue}
+        handleChange = {handleChange}
+        postData = {() => postData(inputValue)}
+        disabled = {disabled}
+      />
     </>
   );
 }

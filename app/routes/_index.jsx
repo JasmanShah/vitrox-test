@@ -5,6 +5,7 @@ import { db } from '../firebase';
 import { NoData } from '../components/CustomPage';
 import ComponentTable from '../components/ComponentTable';
 import DialogEdit from '../components/DialogEdit';
+import { deleteData, updateData } from '../constants/api';
 
 export const meta = () => {
   return [
@@ -32,16 +33,6 @@ export default function Index () {
     return unsubscribe;
   };
 
-  const deleteData = async (id) => {
-    console.log(id);
-    await deleteDoc(doc(db, dbName, id));
-  };
-
-  const updateData = async (id) => {
-    const ref = doc(db, dbName, id);
-    await updateDoc(ref, {});
-  };
-
   useEffect(() => {
     getDataAll();
   }, []);
@@ -53,8 +44,8 @@ export default function Index () {
       : <>
         <ComponentTable
           data = {data}
-          updateData = {openModal}
-          deleteData = {deleteData}
+          openModal = {openModal}
+          dbName = {dbName}
         />
         <DialogEdit
           isOpen = {isOpen}
