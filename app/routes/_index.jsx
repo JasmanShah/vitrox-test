@@ -62,13 +62,16 @@ export default function Index () {
           data = {data}
           openModal = {openModal}
         />
-        <DialogDelete
-          isOpen = {isOpenDelete}
-          closeModal = {closeModal}
-          dbName = {dbName}
-          id={id}
-          data={dataSelected}
-        />
+        {isOpenDelete
+          ? <DialogDelete
+            isOpen = {isOpenDelete}
+            closeModal = {closeModal}
+            dbName = {dbName}
+            id={id}
+            data={dataSelected}
+          />
+          : null
+        }
         {isOpenEdit
           ? <DialogEdit
             isOpen = {isOpenEdit}

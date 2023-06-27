@@ -27,7 +27,7 @@ export default function DialogEdit (props) {
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={closeModal}>
+      <Dialog as="div" className="relative z-50" onClose={closeModal}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -51,18 +51,15 @@ export default function DialogEdit (props) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-lg transform overflow-hidden rounded-2xl bg-white p-6 text-center align-middle shadow-xl transition-all">
+              <Dialog.Panel className="w-full max-w-lg transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                   as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900"
+                  className="text-lg font-medium leading-6 text-gray-900 text-center"
                 >
-                    Edit this Component?
+                    Component Editor
                 </Dialog.Title>
-                <div className="mt-2">
-                  <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-                    <div className="mx-auto max-w-lg text-center">
-                      <h1 className="text-2xl font-bold sm:text-3xl">Component Editor</h1>
-                    </div>
+                <div>
+                  <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
                     <form className="mx-auto mb-0 mt-8 max-w-md space-y-4">
                       <div>
                         <div className="relative">
@@ -131,7 +128,7 @@ export default function DialogEdit (props) {
                   </div>
                 </div>
 
-                <div className="mt-4">
+                <div className="mt-4 text-center">
                   <button
                     type="button"
                     className="inline-flex justify-center rounded-md bg-green-100 px-4 py-2 text-sm font-medium hover:bg-green-500 "

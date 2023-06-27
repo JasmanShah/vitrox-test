@@ -2,10 +2,10 @@ import { Fragment } from 'react';
 import { Transition, Dialog } from '@headlessui/react';
 import { deleteData } from '../constants/api';
 export default function DialogDelete (props) {
-  const { isOpen, closeModal, dbName, id } = props;
+  const { isOpen, closeModal, dbName, id, data } = props;
   return (
     <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={closeModal}>
+      <Dialog as="div" className="relative z-50" onClose={closeModal}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -36,9 +36,10 @@ export default function DialogDelete (props) {
                 >
                     Delete this Component?
                 </Dialog.Title>
-                <div className="mt-2">
-                  {dbName}
-                  <p>{id}</p>
+                <div className="mt-2 text-left pl-8">
+                  <div><label className='font-bold'>Name:</label> {data[0].component_name}</div>
+                  <div><label className='font-bold'>Coordinate[x,y]:</label> {data[0].coordinate_x}, {data[0].coordinate_y}</div>
+                  <div><label className='font-bold'>Orientation:</label> {data[0].orientation}</div>
                 </div>
 
                 <div className="mt-4">
