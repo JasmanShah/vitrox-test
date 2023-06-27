@@ -16,8 +16,8 @@ export default function ComponentForm (props) {
               type="text"
               className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
               placeholder="Enter Component Name"
-              value={inputValue.component_name}
               onChange={handleChange}
+              value={inputValue.component_name}
             />
           </div>
         </div>
@@ -32,6 +32,7 @@ export default function ComponentForm (props) {
                   type='number'
                   className="rounded-lg border-gray-200 p-4 pl-8 text-sm shadow-sm"
                   placeholder="Enter Coordinate X"
+                  value={inputValue.coordinate_x}
                   onChange={handleChange}
                 />
                 <span className="absolute inset-y-0 start-0 grid place-content-center px-4">
@@ -45,6 +46,7 @@ export default function ComponentForm (props) {
                   type='number'
                   className="rounded-lg border-gray-200 p-4 pl-8 text-sm shadow-sm"
                   placeholder="Enter Coordinate Y"
+                  value={inputValue.coordinate_y}
                   onChange={handleChange}
                 />
                 <span className="absolute inset-y-0 start-0 grid place-content-center px-4">
@@ -64,6 +66,7 @@ export default function ComponentForm (props) {
               type="number"
               className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
               placeholder="Enter Orientation"
+              value={inputValue.orientation}
               onChange={handleChange}
             />
           </div>

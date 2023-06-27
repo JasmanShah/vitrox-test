@@ -18,6 +18,7 @@ const dbName = 'data';
 
 export default function Index () {
   const [data, setData] = useState([]);
+  const [dataSelected, setDataSelected] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isOpenDelete, setIsOpenDelete] = useState(false);
   const [isOpenEdit, setIsOpenEdit] = useState(false);
@@ -27,8 +28,9 @@ export default function Index () {
     setIsOpenDelete(false);
     setIsOpenEdit(false);
   }
-  function openModal (type, id) {
+  function openModal (type, id, data) {
     setId(id);
+    setDataSelected(data);
     if (type === 'delete') {
       setIsOpenDelete(true);
     }
@@ -66,12 +68,17 @@ export default function Index () {
           dbName = {dbName}
           id={id}
         />
-        <DialogEdit
-          isOpen = {isOpenEdit}
-          closeModal = {closeModal}
-          dbName = {dbName}
-          id={id}
-        />
+        {isOpenEdit
+          ? <DialogEdit
+            isOpen = {isOpenEdit}
+            closeModal = {closeModal}
+            dbName = {dbName}
+            id={id}
+            data={dataSelected}
+          />
+          : null
+        }
+
       </>
   );
 }

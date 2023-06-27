@@ -1,6 +1,4 @@
-import { useState } from 'react';
-import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../firebase';
+import { useEffect, useState } from 'react';
 import { postData } from '../constants/api';
 import ComponentForm from '../components/ComponentForm';
 
@@ -9,23 +7,23 @@ export default function AddComponent () {
   const [inputValue, setInputValue] = useState(
     {
       component_name: '',
-      coordinate_x: null,
-      coordinate_y: null,
-      orientation: null
+      coordinate_x: '',
+      coordinate_y: '',
+      orientation: ''
     }
   );
 
-  // const postData = async () => {
-  //   await addDoc(collection(db, 'data'), inputValue);
-  // };
-
   const handleChange = (e) => {
+    console.log('handle');
     const { name, value } = e.target;
     setInputValue((prevState) => ({ ...prevState, [name]: value }));
     if (inputValue.component_name && inputValue.coordinate_x && inputValue.coordinate_y && inputValue.orientation) {
       setDisabled(false);
     }
   };
+  useEffect(() => {
+    console.log('New Data');
+  }, [inputValue]);
 
   return (
     <>
