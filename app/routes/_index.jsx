@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import * as fs from 'fs';
+import { useEffect, useState } from 'react';
 import data from '../constants/data.json';
 import { ButtonDelete, ButtonEdit } from '../components/CustomButton';
+import LocalStorageManager from '../components/LocalStorageManager';
 export const meta = () => {
   return [
     { title: 'ViTrox' },
@@ -42,6 +42,7 @@ export default function Index () {
 
   return (
     <div>
+      <LocalStorageManager/>
       <table className="min-w-full divide-y-2 divide-gray-200 text-sm">
         <thead className="ltr:text-left rtl:text-right">
           <tr>
