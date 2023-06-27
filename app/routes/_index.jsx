@@ -1,42 +1,35 @@
 import React, { useEffect, useState } from 'react';
-
-const MyComponent = () => {
-  const [data, setData] = useState({});
-
-  // Load data from Local Storage on component mount
-  useEffect(() => {
-    const storedData = localStorage.getItem('myData');
-    if (storedData) {
-      setData(JSON.parse(storedData));
-    }
-  }, []);
-
-  // Save data to Local Storage
-  const saveData = () => {
-    localStorage.setItem('myData', JSON.stringify(data));
-    console.log('Data saved.');
-  };
-
-  // Update data
-  const updateData = () => {
-    const newData = {
-      name: 'John Doe',
-      age: 25,
-      email: 'johndoe@example.com'
-    };
-    setData(newData);
-  };
-
-  return (
-    <div>
-      <h1>{data.name}</h1>
-      <h1>{data.name}</h1>
-      <p>Age: {data.age}</p>
-      <p>Email: {data.email}</p>
-      <button onClick={updateData}>Update Data</button>
-      <button onClick={saveData}>Save Data</button>
-    </div>
-  );
+import * as fs from 'fs';
+import data from '../constants/data.json';
+export const meta = () => {
+  return [
+    { title: 'ViTrox' },
+    { name: 'ViTrox Test', content: 'Welcome to ViTrox Test' }
+  ];
 };
 
-export default MyComponent;
+export default function Index () {
+  return (
+    <div>
+      <table className="min-w-full divide-y-2 divide-gray-200 text-sm">
+        <thead className="ltr:text-left rtl:text-right">
+          <tr>
+            {Object.keys(data[0]).map((title, index) => (
+              <th key={index} className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{title}</th>
+            ))}
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-200 text-center">
+          {data.map((item, index) => (
+            <tr key={index}>
+              {Object.values(item).map((value, index) => (
+                <td key={index} className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{value}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
