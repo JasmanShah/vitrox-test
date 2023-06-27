@@ -4,8 +4,7 @@ import { db } from '../firebase';
 
 import { NoData } from '../components/CustomPage';
 import ComponentTable from '../components/ComponentTable';
-import DialogEdit from '../components/DialogEdit';
-import { deleteData, updateData } from '../constants/api';
+import DialogDelete from '../components/DialogDelete';
 
 export const meta = () => {
   return [
@@ -19,9 +18,23 @@ const dbName = 'data';
 export default function Index () {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isOpen, setIsOpen] = useState(false);
-  function closeModal () { setIsOpen(false); }
-  function openModal () { setIsOpen(true); }
+  const [isOpenDelete, setIsOpenDelete] = useState(false);
+  const [isOpenEdit, setIsOpenEdit] = useState(false);
+  const [id, setId] = useState('');
+
+  function closeModal (type) {
+    setIsOpenDelete(false);
+    setIsOpenEdit(false);
+  }
+  function openModal (type, id) {
+    setId(id);
+    if (type === 'delete') {
+      setIsOpenDelete(true);
+    }
+    if (type === 'edit') {
+      setIsOpenEdit(true);
+    }
+  }
 
   const getDataAll = async () => {
     const q = query(collection(db, dbName), orderBy('component_name', 'asc'));
@@ -45,11 +58,12 @@ export default function Index () {
         <ComponentTable
           data = {data}
           openModal = {openModal}
-          dbName = {dbName}
         />
-        <DialogEdit
-          isOpen = {isOpen}
+        <DialogDelete
+          isOpen = {isOpenDelete}
           closeModal = {closeModal}
+          dbName = {dbName}
+          id={id}
         />
       </>
   );
