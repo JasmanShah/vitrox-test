@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../firebase';
+import { ButtonSubmit } from '../components/CustomButton';
 
 export default function AddComponent () {
-  const [data, setData] = useState([]);
+  const [disabled, setDisabled] = useState(true);
   const [inputValue, setInputValue] = useState(
     {
       component_name: '',
@@ -11,16 +14,16 @@ export default function AddComponent () {
     }
   );
 
-  // Handle form submission
-  const handleSubmit = (event) => {
-    setData({ ...data, inputValue });
-    console.log(inputValue);
-    console.log(data);
+  const postData = async () => {
+    await addDoc(collection(db, 'data'), inputValue);
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputValue((prevState) => ({ ...prevState, [name]: value }));
+    if (inputValue.component_name && inputValue.coordinate_x && inputValue.coordinate_y && inputValue.orientation) {
+      setDisabled(false);
+    }
   };
 
   return (
@@ -30,7 +33,7 @@ export default function AddComponent () {
           <h1 className="text-2xl font-bold sm:text-3xl">Add Component</h1>
         </div>
 
-        <form onSubmit={handleSubmit} className="mx-auto mb-0 mt-8 max-w-md space-y-4">
+        <form className="mx-auto mb-0 mt-8 max-w-md space-y-4">
           <div>
             <div className="relative">
               <label className="font-bold pl-4">Component Name:</label>
@@ -93,13 +96,11 @@ export default function AddComponent () {
           </div>
 
           <div className="flex justify-center">
-
-            <button
-              type="submit"
-              className="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
-            >
-                Add Data
-            </button>
+            <ButtonSubmit
+              onPress={postData}
+              title='Add Data'
+              disabled={disabled}
+            />
           </div>
         </form>
       </div>

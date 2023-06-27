@@ -54,7 +54,23 @@ function ButtonDelete (props) {
   );
 }
 
+function ButtonSubmit (props) {
+  const { onPress, title, disabled } = props;
+  return (
+    <>
+      <button
+        type='button'
+        className={`inline-block rounded-lg ${disabled ? 'bg-red-500' : 'bg-blue-500'} px-5 py-3 text-sm font-medium text-white`}
+        onClick={onPress}
+      >
+        {title}
+      </button>
+    </>
+  );
+}
+
 export {
   ButtonEdit,
-  ButtonDelete
+  ButtonDelete,
+  ButtonSubmit
 };
