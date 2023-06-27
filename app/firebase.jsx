@@ -5,13 +5,7 @@ import { getFirestore } from 'firebase/firestore';
 // https://firebase.google.com/docs/web/setup#available-libraries
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyCG62zVByyD-MLDYEzC7YjNjh-7qm4CrSI',
-  authDomain: 'vitrox-test.firebaseapp.com',
-  projectId: 'vitrox-test',
-  storageBucket: 'vitrox-test.appspot.com',
-  messagingSenderId: '738753457352',
-  appId: '1:738753457352:web:2541495dc18e90a96f89fd',
-  measurementId: 'G-V4B9TDETGS'
+  // Your Config Here
 };
 // Initialize Firebase
 
