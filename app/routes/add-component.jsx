@@ -13,29 +13,15 @@ export default function AddComponent () {
 
   // Handle form submission
   const handleSubmit = (event) => {
-    // setData((prevData) => [...prevData, inputValue]);
     setData({ ...data, inputValue });
     console.log(inputValue);
     console.log(data);
-    // event.preventDefault();
-    // localStorage.setItem('component_data', JSON.stringify(inputValue));
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setInputValue((prevState) => ({
-      ...prevState,
-      [name]: value
-    }));
+    setInputValue((prevState) => ({ ...prevState, [name]: value }));
   };
-
-  // Load data from localStorage on component mount
-  useEffect(() => {
-    const storedData = localStorage.getItem('component_data');
-    if (storedData) {
-      setData(JSON.parse(storedData));
-    }
-  }, []);
 
   return (
     <>
@@ -43,7 +29,6 @@ export default function AddComponent () {
         <div className="mx-auto max-w-lg text-center">
           <h1 className="text-2xl font-bold sm:text-3xl">Add Component</h1>
         </div>
-        <button onClick={handleSubmit}>Click ME</button>
 
         <form onSubmit={handleSubmit} className="mx-auto mb-0 mt-8 max-w-md space-y-4">
           <div>

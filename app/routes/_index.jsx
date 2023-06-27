@@ -17,29 +17,6 @@ const newObject = {
 };
 
 export default function Index () {
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    localStorage.setItem('items', JSON.stringify(items));
-  }, [items]);
-
-  const deleteData = (index) => {
-    const updatedObjects = [...data];
-    updatedObjects.splice(index, 1);
-    console.table(updatedObjects);
-  };
-
-  const addData = (newObject) => {
-    const updatedObjects = [...data, newObject];
-    console.table(updatedObjects);
-  };
-
-  const editdata = (index, updatedObject) => {
-    const updatedObjects = [...data];
-    updatedObjects[index] = updatedObject;
-    console.table(updatedObject);
-  };
-
   return (
     <div>
       <LocalStorageManager/>
@@ -63,10 +40,10 @@ export default function Index () {
               <td>
                 <span className="inline-flex overflow-hidden rounded-md border bg-white shadow-sm">
                   <ButtonEdit
-                    onPress={() => console.log(editdata(index, newObject))}
+                    onPress={() => console.log('editdata(index, newObject)')}
                   />
                   <ButtonDelete
-                    onPress={() => console.log(deleteData(index))}
+                    onPress={() => console.log('deleteData(index)')}
                   />
                 </span>
 
