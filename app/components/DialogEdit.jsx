@@ -1,8 +1,7 @@
 import { Fragment } from 'react';
 import { Transition, Dialog } from '@headlessui/react';
-import ComponentForm from './ComponentForm';
 export default function DialogEdit (props) {
-  const { isOpen, closeModal } = props;
+  const { isOpen, closeModal, dbName, id } = props;
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -34,32 +33,28 @@ export default function DialogEdit (props) {
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                    Update Component
+                    Edit this Component?
                 </Dialog.Title>
                 <div className="mt-2">
-                  {/* <ComponentForm
-                    inputValue = {inputValue}
-                    handleChange = {handleChange}
-                    postData = {postData}
-                    disabled = {disabled}
-                  /> */}
+                  {dbName}
+                  <p>{id}</p>
                 </div>
 
                 <div className="mt-4">
+                  <button
+                    type="button"
+                    className="inline-flex justify-center rounded-md bg-green-100 px-4 py-2 text-sm font-medium hover:bg-green-500 "
+                    onClick={() => { closeModal(); }}
+                  >
+                      Edit
+                  </button>
+                  <span className='m-1'></span>
                   <button
                     type="button"
                     className="inline-flex justify-center rounded-md bg-red-100 px-4 py-2 text-sm font-medium hover:bg-red-500 "
                     onClick={closeModal}
                   >
                       Cancel
-                  </button>
-                  <span className='m-1'></span>
-                  <button
-                    type="button"
-                    className="inline-flex justify-center rounded-md bg-green-100 px-4 py-2 text-sm font-medium hover:bg-green-500 "
-                    onClick={closeModal}
-                  >
-                      Update
                   </button>
                 </div>
               </Dialog.Panel>

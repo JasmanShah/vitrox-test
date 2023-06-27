@@ -1,5 +1,4 @@
 import { ButtonDelete, ButtonEdit } from './CustomButton';
-import { deleteData } from '../constants/api';
 export default function ComponentTable (props) {
   const { data, openModal } = props;
   return (

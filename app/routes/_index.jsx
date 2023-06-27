@@ -5,6 +5,7 @@ import { db } from '../firebase';
 import { NoData } from '../components/CustomPage';
 import ComponentTable from '../components/ComponentTable';
 import DialogDelete from '../components/DialogDelete';
+import DialogEdit from '../components/DialogEdit';
 
 export const meta = () => {
   return [
@@ -22,7 +23,7 @@ export default function Index () {
   const [isOpenEdit, setIsOpenEdit] = useState(false);
   const [id, setId] = useState('');
 
-  function closeModal (type) {
+  function closeModal () {
     setIsOpenDelete(false);
     setIsOpenEdit(false);
   }
@@ -61,6 +62,12 @@ export default function Index () {
         />
         <DialogDelete
           isOpen = {isOpenDelete}
+          closeModal = {closeModal}
+          dbName = {dbName}
+          id={id}
+        />
+        <DialogEdit
+          isOpen = {isOpenEdit}
           closeModal = {closeModal}
           dbName = {dbName}
           id={id}
