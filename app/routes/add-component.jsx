@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebase';
-import { ButtonSubmit } from '../components/CustomButton';
 import ComponentForm from '../components/ComponentForm';
 
 export default function AddComponent () {
