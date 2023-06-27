@@ -1,4 +1,23 @@
-export default function addData () {
+import { useState } from 'react';
+
+export default function AddData () {
+  const [inputValue, setInputValue] = useState(
+    {
+      component_name: '',
+      coordinate_x: null,
+      coordinate_y: null,
+      orientation: null
+    }
+  );
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInputValue((prevState) => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
   return (
     <>
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
@@ -15,6 +34,8 @@ export default function addData () {
                 type="text"
                 className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Enter Component Name"
+                value={inputValue.component_name}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -22,19 +43,32 @@ export default function addData () {
           <div>
             <div className="relative">
               <label className="font-bold pl-4">Coordinate:</label>
-              <div className="grid-cols-2 gap-4">
-                <input
-                  name="coordinate_x"
-                  type="int"
-                  className="rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                  placeholder="Enter Coordinate X"
-                />
-                <input
-                  name="coordinate_y"
-                  type="int"
-                  className="rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                  placeholder="Enter Coordinate Y"
-                />
+              <div className="grid grid-cols-2 gap-4">
+                <div className="relative">
+                  <input
+                    name="coordinate_x"
+                    type='number'
+                    className="rounded-lg border-gray-200 p-4 pl-8 text-sm shadow-sm"
+                    placeholder="Enter Coordinate X"
+                    onChange={handleChange}
+                  />
+                  <span className="absolute inset-y-0 start-0 grid place-content-center px-4">
+                    X:
+                  </span>
+                </div>
+
+                <div className="relative">
+                  <input
+                    name="coordinate_y"
+                    type='number'
+                    className="rounded-lg border-gray-200 p-4 pl-8 text-sm shadow-sm"
+                    placeholder="Enter Coordinate Y"
+                    onChange={handleChange}
+                  />
+                  <span className="absolute inset-y-0 start-0 grid place-content-center px-4">
+                    Y:
+                  </span>
+                </div>
               </div>
 
             </div>
@@ -45,9 +79,10 @@ export default function addData () {
               <label className="font-bold pl-4">Orientation:</label>
               <input
                 name="orientation"
-                type="float"
+                type="number"
                 className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Enter Orientation"
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -55,8 +90,9 @@ export default function addData () {
           <div className="flex justify-center">
 
             <button
-              type="submit"
+              type="button"
               className="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
+              onClick={() => console.log(inputValue)}
             >
                 Add Data
             </button>
