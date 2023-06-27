@@ -4,7 +4,7 @@ function ButtonEdit (props) {
     <>
       <button
         className="inline-block border-e p-3 text-gray-700 hover:bg-gray-50 focus:relative"
-        title="Edit Product"
+        title="Edit Component"
         onClick={onPress}
       >
         <svg
@@ -32,7 +32,7 @@ function ButtonDelete (props) {
     <>
       <button
         className="inline-block p-3 text-gray-700 hover:bg-gray-50 focus:relative"
-        title="Delete Product"
+        title="Delete Component"
         onClick={onPress}
       >
         <svg
