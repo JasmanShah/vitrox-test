@@ -78,7 +78,7 @@ function MainNavigation () {
 
               <li>
                 <a
-                  href="/add-data"
+                  href="/add-component"
                   className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                 >
                   <svg
@@ -94,7 +94,7 @@ function MainNavigation () {
                   <span
                     className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100"
                   >
-                    Add Data
+                    Add Component
                   </span>
                 </a>
               </li>
