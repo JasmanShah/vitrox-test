@@ -1,11 +1,11 @@
 import { Fragment, useEffect, useState } from 'react';
 import { Transition, Dialog } from '@headlessui/react';
-import { updateData } from '../constants/api';
 import { ButtonSubmit } from './CustomButton';
+import { updateData } from '../constants/api';
 
 export default function DialogEdit (props) {
-  const { isOpen, closeModal, dbName, data } = props;
-  const [disabled, setDisabled] = useState(true);
+  const { isOpen, closeModal, dbName, id, data } = props;
+  const [disabled, setDisabled] = useState(false);
   const [inputValue, setInputValue] = useState(
     {
       component_name: data[0].component_name,
@@ -20,6 +20,8 @@ export default function DialogEdit (props) {
     setInputValue((prevState) => ({ ...prevState, [name]: value }));
     if (inputValue.component_name && inputValue.coordinate_x && inputValue.coordinate_y && inputValue.orientation) {
       setDisabled(false);
+    } else {
+      setDisabled(true);
     }
   };
 
@@ -125,26 +127,18 @@ export default function DialogEdit (props) {
                           />
                         </div>
                       </div>
-
-                      <div className="flex justify-center">
-                        <ButtonSubmit
-                          onPress={updateData}
-                          title='Add Data'
-                          disabled={disabled}
-                        />
-                      </div>
                     </form>
                   </div>
                 </div>
 
                 <div className="mt-4">
-                  {/* <button
+                  <button
                     type="button"
                     className="inline-flex justify-center rounded-md bg-green-100 px-4 py-2 text-sm font-medium hover:bg-green-500 "
-                    onClick={() => { closeModal(); }}
+                    onClick={() => { updateData(dbName, id, inputValue); closeModal(); }}
                   >
                       Edit
-                  </button> */}
+                  </button>
                   <span className='m-1'></span>
                   <button
                     type="button"

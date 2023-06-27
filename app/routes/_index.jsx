@@ -67,6 +67,7 @@ export default function Index () {
           closeModal = {closeModal}
           dbName = {dbName}
           id={id}
+          data={dataSelected}
         />
         {isOpenEdit
           ? <DialogEdit
