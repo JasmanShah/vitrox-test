@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import LocalStorageManager from '../components/LocalStorageManager';
 
 export default function AddComponent () {
   const [data, setData] = useState([]);
