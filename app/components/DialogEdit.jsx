@@ -137,7 +137,7 @@ export default function DialogEdit (props) {
                     className="inline-flex justify-center rounded-md bg-green-100 px-4 py-2 text-sm font-medium hover:bg-green-500 "
                     onClick={() => { updateData(dbName, id, inputValue); closeModal(); }}
                   >
-                      Edit
+                      Update
                   </button>
                   <span className='m-1'></span>
                   <button
