@@ -46,7 +46,7 @@ export default function DialogDelete (props) {
                   <button
                     type="button"
                     className="inline-flex justify-center rounded-md bg-red-100 px-4 py-2 text-sm font-medium hover:bg-red-500 "
-                    onClick={() => { deleteData(dbName, id); closeModal(); }}
+                    onClick={() => { deleteData(dbName, id); closeModal(); alert('Component Deleted'); }}
                   >
                       Delete
                   </button>

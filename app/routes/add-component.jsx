@@ -2,16 +2,19 @@ import { useEffect, useState } from 'react';
 import { postData } from '../constants/api';
 import ComponentForm from '../components/ComponentForm';
 
+const initData = {
+  component_name: '',
+  coordinate_x: '',
+  coordinate_y: '',
+  orientation: ''
+};
 export default function AddComponent () {
   const [disabled, setDisabled] = useState(true);
-  const [inputValue, setInputValue] = useState(
-    {
-      component_name: '',
-      coordinate_x: '',
-      coordinate_y: '',
-      orientation: ''
-    }
-  );
+  const [inputValue, setInputValue] = useState(initData);
+
+  const resetForm = () => {
+    setInputValue(initData);
+  };
 
   const handleChange = (e) => {
     console.log('handle');
@@ -33,7 +36,7 @@ export default function AddComponent () {
             title= 'Add Component'
             inputValue = {inputValue}
             handleChange = {handleChange}
-            postData = {() => postData(inputValue)}
+            postData = {() => { postData(inputValue); resetForm(); alert('Component Added'); }}
             disabled = {disabled}
           />
         </div>
