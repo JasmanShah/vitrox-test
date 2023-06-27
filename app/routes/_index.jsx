@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { collection, query, onSnapshot, orderBy, doc, deleteDoc } from 'firebase/firestore';
+import { collection, query, onSnapshot, orderBy, doc, deleteDoc, updateDoc } from 'firebase/firestore';
 
 import { db } from '../firebase';
 import { ButtonDelete, ButtonEdit } from '../components/CustomButton';
@@ -32,6 +32,11 @@ export default function Index () {
     await deleteDoc(doc(db, dbName, id));
   };
 
+  const updateData = async (id) => {
+    const ref = doc(db, dbName, id);
+    await updateDoc(ref, {});
+  };
+
   useEffect(() => {
     getDataAll();
   }, []);
@@ -41,7 +46,9 @@ export default function Index () {
     !data || data.length < 1
       ? <NoData/>
       : <div>
-
+        <div className="mx-auto max-w-lg text-center">
+          <h1 className="text-2xl font-bold sm:text-3xl">Component Lists</h1>
+        </div>
         <table className="min-w-full divide-y-2 divide-gray-200 text-sm">
           <thead className="ltr:text-left rtl:text-right">
             <tr>
@@ -71,7 +78,7 @@ export default function Index () {
                 <td>
                   <span className="inline-flex overflow-hidden rounded-md border bg-white shadow-sm">
                     <ButtonEdit
-                      onPress={() => console.log('editdata(index, newObject)')}
+                      onPress={() => updateData(value.id)}
                     />
                     <ButtonDelete
                       onPress={() => deleteData(value.id)}
